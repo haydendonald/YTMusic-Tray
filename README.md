@@ -9,6 +9,7 @@ A simple application to run Youtube Music within the windows tray or mac menubar
 
 ## Supported
 * macOS
+* Windows
 
 # Features
 * Play/Pause button
