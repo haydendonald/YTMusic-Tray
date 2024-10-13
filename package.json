@@ -2,11 +2,12 @@
   "name": "YTMusic-Tray",
   "version": "0.1.0",
   "description": "A simple application to run Youtube Music within the windows tray or mac menubar",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
-    "build": "tsc && cp -r assets dist/",
+    "build": "tsc",
     "start": "electron .",
-    "dev": "npm run build && npm run start"
+    "dev": "npm run build && npm run start",
+    "make": "npm run build && electron-builder -m"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,23 @@
     "@types/electron-positioner": "^4.1.4",
     "@types/node": "^20.6.3",
     "electron": "^32.2.0",
+    "electron-builder": "^25.1.8",
     "typescript": "^5.2.2"
+  },
+  "build": {
+    "appId": "com.haydendonald.ytmusic-tray",
+    "mac": {
+      "category": "public.app-category.music"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "NSIS",
+      "icon": "build/icon.ico"
+    }
   }
 }

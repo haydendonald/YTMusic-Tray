@@ -12,8 +12,8 @@ const appVersion = process.env.npm_package_version;
 const appPath = app.getPath("exe");
 
 //Set our locations for the icons and html
-const iconPath = path.join(__dirname, "..", "assets", "icons");
-const htmlPath = path.join(__dirname, "..", "assets", "html");
+const iconPath = path.join(__dirname, "assets", "icons");
+const htmlPath = path.join(__dirname, "assets", "html");
 const html = {
   about: path.join(htmlPath, "about.html"),
   aboutGenerated: path.join(htmlPath, "about_gen.html")

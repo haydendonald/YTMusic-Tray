@@ -33,3 +33,4 @@ This project is not released yet, have a look at development to try it yourself
 * Run `npm run dev` to run in development mode
 * Run `npm run build` to build the project
 * Run `npm run start` to run the application
+* Run `npm i -g electron-builder` to install electron-builder to build the executables
