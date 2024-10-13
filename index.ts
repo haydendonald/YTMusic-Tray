@@ -177,9 +177,6 @@ app.on("ready", () => {
     console.log("Load in the previous session");
     currentSession = session.fromPartition('persist:YTMusic');
     currentCookies = currentSession.cookies;
-
-    //Show the main window if this is our first launch
-    mainWindow.showWindow();
   });
 
   mainWindow.app.commandLine.appendSwitch('disable-backgrounding-occluded-windows', 'true');
