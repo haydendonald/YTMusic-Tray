@@ -4,10 +4,11 @@
   "description": "A simple application to run Youtube Music within the windows tray or mac menubar",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "npm run fixmenubar && tsc",
+    "fixmenubar": "cd ./node_modules/ && rm -rf menubar && git clone https://github.com/haydendonald/menubar && cd menubar && yarn install && yarn build",
     "start": "electron .",
-    "dev": "npm run build && npm run start",
-    "make": "npm run build && electron-builder -m"
+    "dev": "tsc && npm run start",
+    "make": "npm run build && electron-builder -mwl"
   },
   "repository": {
     "type": "git",

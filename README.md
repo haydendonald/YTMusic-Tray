@@ -34,3 +34,13 @@ This project is not released yet, have a look at development to try it yourself
 * Run `npm run build` to build the project
 * Run `npm run start` to run the application
 * Run `npm i -g electron-builder` to install electron-builder to build the executables
+
+At the moment this app requires a PR to be pulled into menubar for this project to function properly. Do fix this run the following:
+```bash
+cd ./node_modules/
+rm -rf menubar
+git clone https://github.com/haydendonald/menubar
+cd menubar
+yarn install
+yarn build
+```
