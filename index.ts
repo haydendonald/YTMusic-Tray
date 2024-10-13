@@ -64,7 +64,7 @@ fs.readFile(html.about, 'utf8', function (err, data) {
   data = data.replace(/{APPNAME}/g, appName);
   data = data.replace(/{APPGITURL}/g, appGit);
   data = data.replace(/{APPGITURLISSUES}/g, appGitIssues);
-  data = data.replace(/{APPVERSIONURL}/g, `${appGit}/releases/tag/release-v${appVersion}`);
+  data = data.replace(/{APPVERSIONURL}/g, `${appGit}/releases/tag/v${appVersion}`);
   data = data.replace(/{APPVERSION}/g, appVersion);
   fs.writeFile(html.aboutGenerated, data, 'utf8', function (err) { if (err) return console.log(err); });
 });
