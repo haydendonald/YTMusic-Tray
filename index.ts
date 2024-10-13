@@ -142,7 +142,6 @@ app.on("ready", () => {
     browserWindow: {
       width: 940, //Minimum width for YT music to show the like button
       height: 600,
-      y: 10,
       resizable: true,
       webPreferences: {
         preload: path.join(__dirname, "preload.js"),
@@ -159,7 +158,6 @@ app.on("ready", () => {
     browserWindow: {
       width: 500,
       height: 350,
-      y: 10,
     },
     tray: mainTray,
     disableClick: true
