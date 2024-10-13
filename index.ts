@@ -96,7 +96,7 @@ app.on("ready", () => {
       { label: `${isPlaying ? "Playing " : ""}${currentTrack}`, type: "normal" },
 
       { type: 'separator' },
-      { label: `${isPlaying ? "Pause" : "Play"}${currentTrack}`, type: "normal", click: () => { actions.pressPlay() } },
+      { label: `${isPlaying ? "Pause " : "Play "}${currentTrack}`, type: "normal", click: () => { actions.pressPlay() } },
 
       { type: 'separator' },
       { label: `${isLiked ? "Remove Like from " : "Like "}${currentTrack}`, type: "normal", click: () => { actions.pressLike() } },
