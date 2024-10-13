@@ -21,7 +21,10 @@
     "menubar",
     "electron"
   ],
-  "author": "Hayden Donald",
+  "author": {
+    "name": "Hayden Donald",
+    "email": "haydendonald@gmail.com"
+  },
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/haydendonald/YTM-tray/issues"
