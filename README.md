@@ -44,3 +44,12 @@ cd menubar
 yarn install
 yarn build
 ```
+
+# FAQ
+### What's this???
+<img src="img/systemevents.png" height="200px" />
+
+This comes up because we use system events to open the app at login.
+
+### How is my login stored?
+When a new cookie comes in i simply pass this to use the session cookies from Electron. It will restore the cookies when the app reloads
