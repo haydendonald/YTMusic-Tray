@@ -261,8 +261,8 @@ app.on("ready", () => {
       });
     }
 
-    //Tell the window that we are ready
-    mainWindow.window?.webContents.send("ready");
+    //Request the web handle to clear it's state so it sends us an update
+    mainWindow.window?.webContents.send("getStates");
   });
 
   //When the window is closed save the cookies to keep us logged in

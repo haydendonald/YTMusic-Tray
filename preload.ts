@@ -62,63 +62,67 @@ const nextButton = {
     }
 }
 
-//Wait for the main thread to be ready
-ipcRenderer.on("ready", () => {
-    console.log("The main thread is ready");
+let lastTrack: string | undefined;
+let lastLike: boolean | undefined;
+let lastDislike: boolean | undefined;
+let lastPlay: boolean | undefined;
 
-    //Periodically check if there were any updates
-    let lastTrack: string | undefined;
-    let lastLike: boolean | undefined;
-    let lastDislike: boolean | undefined;
-    let lastPlay: boolean | undefined;
-    setInterval(() => {
-        //Track
-        let currentTrack = getTrack();
-        if (currentTrack != lastTrack) {
-            console.log(`Track changed to ${currentTrack}`);
-            lastTrack = currentTrack;
-            ipcRenderer.invoke("trackChanged", currentTrack);
-        }
+//If the main thread requests a state update, reset the last states so we can send them again
+ipcRenderer.on("getStates", () => {
+    lastTrack = undefined;
+    lastLike = undefined;
+    lastDislike = undefined;
+    lastPlay = undefined;
+});
 
-        //Like
-        let currentLike = likeButton.get();
-        if (currentLike != lastLike) {
-            console.log(`Like changed to ${currentLike}`);
-            lastLike = currentLike;
-            ipcRenderer.invoke("likeChanged", currentLike);
-        }
+//Periodically check if there were any updates
+setInterval(() => {
+    //Track
+    let currentTrack = getTrack();
+    if (currentTrack != lastTrack) {
+        console.log(`Track changed to ${currentTrack}`);
+        lastTrack = currentTrack;
+        ipcRenderer.invoke("trackChanged", currentTrack);
+    }
 
-        //Dislike
-        let currentDislike = dislikeButton.get();
-        if (currentDislike != lastDislike) {
-            console.log(`Dislike changed to ${currentDislike}`);
-            lastDislike = currentDislike;
-            ipcRenderer.invoke("dislikeChanged", currentDislike);
-        }
+    //Like
+    let currentLike = likeButton.get();
+    if (currentLike != lastLike) {
+        console.log(`Like changed to ${currentLike}`);
+        lastLike = currentLike;
+        ipcRenderer.invoke("likeChanged", currentLike);
+    }
 
-        //Play
-        let currentPlay = playButton.get();
-        if (currentPlay != lastPlay) {
-            console.log(`Play changed to ${currentPlay}`);
-            lastPlay = currentPlay;
-            ipcRenderer.invoke("playChanged", currentPlay);
-        }
-    }, 1000);
+    //Dislike
+    let currentDislike = dislikeButton.get();
+    if (currentDislike != lastDislike) {
+        console.log(`Dislike changed to ${currentDislike}`);
+        lastDislike = currentDislike;
+        ipcRenderer.invoke("dislikeChanged", currentDislike);
+    }
 
-    //Handle incoming actions
-    ipcRenderer.on("pressLike", () => {
-        likeButton.click();
-    });
-    ipcRenderer.on("pressDislike", () => {
-        dislikeButton.click();
-    });
-    ipcRenderer.on("pressPlay", () => {
-        playButton.click();
-    });
-    ipcRenderer.on("pressNext", () => {
-        nextButton.click();
-    });
-    ipcRenderer.on("pressPrevious", () => {
-        prevButton.click();
-    });
+    //Play
+    let currentPlay = playButton.get();
+    if (currentPlay != lastPlay) {
+        console.log(`Play changed to ${currentPlay}`);
+        lastPlay = currentPlay;
+        ipcRenderer.invoke("playChanged", currentPlay);
+    }
+}, 1000);
+
+//Handle incoming actions
+ipcRenderer.on("pressLike", () => {
+    likeButton.click();
+});
+ipcRenderer.on("pressDislike", () => {
+    dislikeButton.click();
+});
+ipcRenderer.on("pressPlay", () => {
+    playButton.click();
+});
+ipcRenderer.on("pressNext", () => {
+    nextButton.click();
+});
+ipcRenderer.on("pressPrevious", () => {
+    prevButton.click();
 });
