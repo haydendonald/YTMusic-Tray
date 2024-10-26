@@ -10,13 +10,9 @@ A simple application to run Youtube Music within the windows tray or mac menubar
 ## Download!
 You can download the prebuilt executables at the [releases](https://github.com/haydendonald/YTMusic-Tray/releases) page.
 
-### Version 0.1.0
-* [macOS](https://github.com/haydendonald/YTMusic-Tray/releases/download/v0.1.0/YTMusic-Tray.Setup.0.1.0.exe)
-* [Windows](https://github.com/haydendonald/YTMusic-Tray/releases/download/v0.1.0/YTMusic-Tray.Setup.0.1.0.exe)
-
-## Supported
-* macOS
-* Windows
+### Version 0.2.0
+* [macOS](https://github.com/haydendonald/YTMusic-Tray/releases/download/v0.2.0/YTMusic-Tray-0.2.0-arm64.dmg)
+* [Windows](https://github.com/haydendonald/YTMusic-Tray/releases/download/v0.2.0/YTMusic-Tray.Setup.0.2.0.exe)
 
 # Features
 * Play/Pause button
@@ -28,10 +24,6 @@ You can download the prebuilt executables at the [releases](https://github.com/h
 # Future aims
 * Track notification
 * Custom selection/order of buttons
-
-# Installation
-This project is not released yet, have a look at development to try it yourself
-
 ## Development
 * Clone the repository
 * Run `npm i` to install dependencies
@@ -51,6 +43,14 @@ yarn build
 ```
 
 # FAQ
+
+### Move the player to the Windows taskbar
+To make the player work correctly in Windows, simply click and drag the youtube music icon into the tray
+
+1. <img src="img/winmove1.png" height="300px" />
+2. <img src="img/winmove2.png" height="50px" />
+
+
 ### What's this???
 <img src="img/systemevents.png" height="200px" />
 
