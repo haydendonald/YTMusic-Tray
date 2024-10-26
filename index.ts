@@ -21,19 +21,19 @@ const html = {
 const icons = {
   youtubeIcon: path.join(iconPath, 'ytmusic.png'),
   likeButton: {
-    liked: path.join(iconPath, 'liked.png'),
-    notLiked: path.join(iconPath, 'notliked.png')
+    liked: path.join(iconPath, 'likedTemplate.png'),
+    notLiked: path.join(iconPath, 'notlikedTemplate.png')
   },
   dislikeButton: {
-    disliked: path.join(iconPath, 'disliked.png'),
-    notDisliked: path.join(iconPath, 'notdisliked.png')
+    disliked: path.join(iconPath, 'dislikedTemplate.png'),
+    notDisliked: path.join(iconPath, 'notdislikedTemplate.png')
   },
   playPauseButton: {
-    play: path.join(iconPath, 'play.png'),
-    pause: path.join(iconPath, 'pause.png')
+    play: path.join(iconPath, 'playTemplate.png'),
+    pause: path.join(iconPath, 'pauseTemplate.png')
   },
-  previousButton: path.join(iconPath, 'previous.png'),
-  nextButton: path.join(iconPath, 'next.png')
+  previousButton: path.join(iconPath, 'previousTemplate.png'),
+  nextButton: path.join(iconPath, 'nextTemplate.png')
 }
 
 //Should we auto launch the app
