@@ -22,27 +22,26 @@ function getTrack() {
 
 //The like button
 const likeButton = {
-    get: () => { return document.getElementById("button-shape-like").getAttribute("aria-pressed") == "true" || false },
+    get: () => { return document.getElementById("button-shape-like").getElementsByTagName("button")[0].getAttribute("aria-pressed") == "true" || false },
     click: () => { document.getElementById("button-shape-like").getElementsByTagName("button")[0].click() }
 }
 
 //The dislike button
 const dislikeButton = {
-    get: () => { return document.getElementById("button-shape-dislike").getAttribute("aria-pressed") == "true" || false },
+    get: () => { return document.getElementById("button-shape-dislike").getElementsByTagName("button")[0].getAttribute("aria-pressed") == "true" || false },
     click: () => { document.getElementById("button-shape-dislike").getElementsByTagName("button")[0].click() }
 }
 
 //The play button
 const playButton = {
-    get: () => { return document.getElementById("play-pause-button").getAttribute("aria-label") != "Play" || false },
-    click: () => { document.getElementById("play-pause-button").click() }
+    get: () => { return document.getElementById("play-pause-button").getElementsByTagName("button")[0].getAttribute("aria-label") != "Play" || false },
+    click: () => { document.getElementById("play-pause-button").getElementsByTagName("button")[0].click() }
 }
 
 //The previous track button
 const prevButton = {
     click: () => {
         for (let element of getLeftControlButtons().children) {
-            console.log(element);
             if (element.getAttribute("title") == "Previous") {
                 return (element as HTMLButtonElement).click();
             }
@@ -54,7 +53,6 @@ const prevButton = {
 const nextButton = {
     click: () => {
         for (let element of getLeftControlButtons().children) {
-            console.log(element);
             if (element.getAttribute("title") == "Next") {
                 return (element as HTMLButtonElement).click();
             }
