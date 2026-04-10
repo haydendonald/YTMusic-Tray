@@ -1,6 +1,6 @@
 {
   "name": "YTMusic-Tray",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A simple application to run Youtube Music within the windows tray or mac menubar",
   "main": "index.js",
   "scripts": {
