@@ -45,6 +45,10 @@
   "build": {
     "appId": "com.haydendonald.ytmusic-tray",
     "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
       "category": "public.app-category.music"
     },
     "linux": {
@@ -57,7 +61,10 @@
       "compression": "gz"
     },
     "win": {
-      "target": "NSIS",
+      "target": [
+        "NSIS",
+        "portable"
+      ],
       "icon": "build/icon.ico"
     }
   }
