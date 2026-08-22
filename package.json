@@ -53,6 +53,9 @@
         "deb"
       ]
     },
+    "deb": {
+      "compression": "gz"
+    },
     "win": {
       "target": "NSIS",
       "icon": "build/icon.ico"

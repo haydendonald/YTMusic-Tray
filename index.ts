@@ -8,7 +8,7 @@ import AutoLaunch from "auto-launch";
 const appName = "YT Music Tray";
 const appGit = "https://www.github.com/haydendonald/ytmusic-tray";
 const appGitIssues = "https://www.github.com/haydendonald/ytmusic-tray/issues";
-const appVersion = process.env.npm_package_version;
+const appVersion = process.env.npm_package_version || "unknown";
 const appPath = app.getPath("exe");
 
 //Set our locations for the icons and html
@@ -165,6 +165,7 @@ app.on("ready", () => {
 
   //Open external links in the default browser
   aboutWindow.on("after-create-window", () => {
+    if (!aboutWindow.window) { return; }
     aboutWindow.window.webContents.setWindowOpenHandler((details) => {
       shell.openExternal(details.url)
       return { action: "deny" }
