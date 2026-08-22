@@ -1,62 +1,92 @@
 const { ipcRenderer } = require('electron')
 
-//Get the left control buttons element
-function getLeftControlButtons() {
-    const controls = document.getElementById("left-controls");
-    for (let element of controls.children) {
-        if (element.classList.contains("left-controls-buttons")) {
-            return element;
+//The left controls buttons block
+const leftControlsButtons = {
+    element: () => {
+        for (let element of document.getElementById("left-controls")?.children || []) {
+            if (element.classList.contains("left-controls-buttons")) {
+                return element;
+            }
         }
     }
 }
 
-//Get the middle control element
-function getMiddleControl() {
-    return document.getElementsByClassName("middle-controls")[0].getElementsByClassName("content-info-wrapper")[0];
+//The middle controls block
+const middleControls = {
+    buttons: () => {
+        return document.getElementsByClassName("middle-controls")[0]?.getElementsByClassName("middle-controls-buttons")[0]?.getElementsByTagName("button")
+    },
+    track: () => { return document.getElementsByClassName("middle-controls")[0]?.getElementsByClassName("content-info-wrapper style-scope ytmusic-player-bar")[0] }
 }
 
-//Get the track name
-function getTrack() {
-    return getMiddleControl().getElementsByClassName("title")[0].innerHTML || "Not Playing";
+//The current track name
+const track = {
+    element: () => { return middleControls.track()?.getElementsByClassName("title")[0] },
+    get: () => { return track.element()?.innerHTML || "Not Playing" }
 }
 
 //The like button
 const likeButton = {
-    get: () => { return document.getElementById("button-shape-like").getElementsByTagName("button")[0].getAttribute("aria-pressed") == "true" || false },
-    click: () => { document.getElementById("button-shape-like").getElementsByTagName("button")[0].click() }
+    element: () => {
+        const buttons = middleControls.buttons();
+        if (!buttons) { return undefined; }
+        for (const button of buttons) {
+            if (button.getAttribute("aria-label") == "Like") {
+                return button;
+            }
+        }
+    },
+    get: () => { return likeButton.element()?.getAttribute("aria-pressed") == "true" || false },
+    click: () => { likeButton.element()?.click() }
 }
 
 //The dislike button
 const dislikeButton = {
-    get: () => { return document.getElementById("button-shape-dislike").getElementsByTagName("button")[0].getAttribute("aria-pressed") == "true" || false },
-    click: () => { document.getElementById("button-shape-dislike").getElementsByTagName("button")[0].click() }
+    element: () => {
+        const buttons = middleControls.buttons();
+        if (!buttons) { return undefined; }
+        for (const button of buttons) {
+            if (button.getAttribute("aria-label") == "Dislike") {
+                return button;
+            }
+        }
+    },
+    get: () => { return dislikeButton.element()?.getAttribute("aria-pressed") == "true" || false },
+    click: () => { dislikeButton.element()?.click() }
 }
 
 //The play button
 const playButton = {
-    get: () => { return document.getElementById("play-pause-button").getElementsByTagName("button")[0].getAttribute("aria-label") != "Play" || false },
-    click: () => { document.getElementById("play-pause-button").getElementsByTagName("button")[0].click() }
+    element: () => { return document.getElementById("play-pause-button")?.getElementsByTagName("button")[0] },
+    get: () => { return playButton.element()?.getAttribute("aria-label") != "Play" || false },
+    click: () => { playButton.element()?.click() }
 }
 
 //The previous track button
 const prevButton = {
-    click: () => {
-        for (let element of getLeftControlButtons().children) {
+    element: () => {
+        for (let element of leftControlsButtons.element()?.children || []) {
             if (element.getAttribute("title") == "Previous") {
-                return (element as HTMLButtonElement).click();
+                return element as HTMLButtonElement;
             }
         }
+    },
+    click: () => {
+        prevButton.element()?.click();
     }
 }
 
 //The next track button
 const nextButton = {
-    click: () => {
-        for (let element of getLeftControlButtons().children) {
+    element: () => {
+        for (let element of leftControlsButtons.element()?.children || []) {
             if (element.getAttribute("title") == "Next") {
-                return (element as HTMLButtonElement).click();
+                return element as HTMLButtonElement;
             }
         }
+    },
+    click: () => {
+        nextButton.element()?.click();
     }
 }
 
@@ -76,7 +106,7 @@ ipcRenderer.on("getStates", () => {
 //Periodically check if there were any updates
 setInterval(() => {
     //Track
-    let currentTrack = getTrack();
+    let currentTrack = track.get();
     if (currentTrack != lastTrack) {
         console.log(`Track changed to ${currentTrack}`);
         lastTrack = currentTrack;
